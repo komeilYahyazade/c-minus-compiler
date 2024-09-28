@@ -1,0 +1,78 @@
+int void $
+int void
+$ { break ; if repeat return ID ( NUM }
+int void
+int void
+(
+; [
+;
+[
+(
+int
+void
+int
+void
+,
+)
+int void
+[
+, )
+{
+{ break ; if repeat return ID ( NUM
+}
+break ; ID ( NUM
+{
+if
+repeat
+return
+ID ( NUM
+break
+;
+if
+endif
+else
+repeat
+return
+;
+ID ( NUM
+( NUM
+ID
+=
+[
+( * + - < == ; ) ] ,
+=
+* + - < == ; ) ] ,
+( NUM
+( * + - < == ; ) ] ,
+< ==
+; ) ] ,
+<
+==
+( ID NUM
+( * + - < == ; ) ] ,
+( NUM
++ -
+< == ; ) ] ,
++
+-
+ID NUM
+( * + - < == ; ) ] ,
+( NUM
+*
++ - < == ; ) ] ,
+(
+ID
+NUM
+(
+[ * + - ; ) < == ] ,
+[
+* + - ; ) < == ] ,
+(
+* + - < == ; ) ] ,
+(
+NUM
+ID ( NUM
+)
+ID ( NUM
+,
+)

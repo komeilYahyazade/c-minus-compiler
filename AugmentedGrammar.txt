@@ -1,0 +1,78 @@
+Program -> Declaration-list $
+Declaration-list -> Declaration Declaration-list
+Declaration-list -> ε
+Declaration -> Declaration-initial Declaration-prime
+Declaration-initial -> Type-specifier #push_type ID #push
+Declaration-prime -> #start_function Fun-declaration-prime
+Declaration-prime -> Var-declaration-prime
+Var-declaration-prime -> #variable_definition ;
+Var-declaration-prime -> [ NUM #push #define_array ] ;
+Fun-declaration-prime ->  ( Params ) #define_function Compound-stmt #END_SCOPE #end_function
+Type-specifier -> int
+Type-specifier -> void
+Params -> int #push ID #push Param-prime #add_param Param-list
+Params -> void
+Param-list -> , Param Param-list
+Param-list -> ε
+Param -> Declaration-initial Param-prime #add_param
+Param-prime -> [ ] #push_array_input_type
+Param-prime -> ε #push_normal_input_type
+Compound-stmt -> { Declaration-list Statement-list }
+Statement-list -> Statement Statement-list
+Statement-list -> ε
+Statement -> Expression-stmt
+Statement -> Compound-stmt
+Statement -> Selection-stmt
+Statement -> Iteration-stmt
+Statement -> Return-stmt
+Expression-stmt -> Expression #pop ;
+Expression-stmt -> break #break ;
+Expression-stmt -> ;
+Selection-stmt -> if ( Expression #if ) Statement Else-stmt
+Else-stmt -> endif #else #endif
+Else-stmt -> else #else Statement endif #endif
+Iteration-stmt -> repeat #start_repeat Statement until ( Expression #repeat_condition )
+Return-stmt -> return Return-stmt-prime
+Return-stmt-prime -> #return ;
+Return-stmt-prime -> Expression #return_value ;
+Expression -> Simple-expression-zegond
+Expression -> ID #push_id B
+B -> = Expression #assign
+B -> [ Expression ] #array_access H
+B -> Simple-expression-prime
+H -> = Expression #assign
+H -> G D C
+Simple-expression-zegond -> Additive-expression-zegond C
+Simple-expression-prime -> Additive-expression-prime C
+C -> Relop Additive-expression #relop
+C -> ε
+Relop -> < #push_less_than_comparator
+Relop -> == #push_is_equal_comparator
+Additive-expression -> Term D
+Additive-expression-prime -> Term-prime D
+Additive-expression-zegond -> Term-zegond D
+D -> Addop Term #add_or_subtract D
+D -> ε
+Addop -> + #push_addition_operator
+Addop -> - #push_subtraction_operator
+Term -> Factor G
+Term-prime -> Factor-prime G
+Term-zegond -> Factor-zegond G
+G -> * Factor #multiply G
+G -> ε
+Factor -> ( Expression )
+Factor -> ID #push_id Var-call-prime
+Factor -> NUM #push_number
+Var-call-prime -> #start_function_call ( Args ) #function_call
+Var-call-prime -> Var-prime
+Var-prime -> [ Expression ] #array_access
+Var-prime -> ε
+Factor-prime -> #start_function_call ( Args ) #function_call
+Factor-prime -> ε
+Factor-zegond -> ( Expression )
+Factor-zegond -> NUM #push_number
+Args -> Arg-list
+Args -> ε
+Arg-list -> Expression Arg-list-prime
+Arg-list-prime -> , Expression Arg-list-prime
+Arg-list-prime -> ε
